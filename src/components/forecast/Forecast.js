@@ -83,7 +83,7 @@ export default function Forecast(props) {
                   <div className="flex justify-between">
                     <p className="font-semibold">Humidity:</p>
                     <p className="text-gray-500 font-semibold">
-                      {item.main.pressure}%
+                      {item.main.humidity}%
                     </p>
                   </div>
                   <div className="flex justify-between">
@@ -95,7 +95,7 @@ export default function Forecast(props) {
                   <div className="flex justify-between">
                     <p className="font-semibold">Feels Like:</p>
                     <p className="text-gray-500 font-semibold">
-                      {item.main.sea_level}°C
+                      {Math.ceil(item.main.feels_like)}°C
                     </p>
                   </div>
                 </div>
