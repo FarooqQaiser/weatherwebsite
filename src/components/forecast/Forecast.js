@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Accordion,
   AccordionItem,
@@ -6,8 +6,11 @@ import {
   AccordionItemButton,
   AccordionItemPanel,
 } from "react-accessible-accordion";
+import { FaChevronDown } from "react-icons/fa";
 
 export default function Forecast(props) {
+  const [activeIndex, setactiveIndex] = useState(null);
+
   const totalDaysInWeek = [
     "Monday",
     "Tuesday",
@@ -22,17 +25,17 @@ export default function Forecast(props) {
     .slice(dayInWeek, totalDaysInWeek.length)
     .concat(totalDaysInWeek.slice(0, dayInWeek));
 
+  const handleDropdownIcon = (key) => {
+    setactiveIndex(activeIndex === key ? null : key);
+  };
+
   return (
     <div className="flex flex-col gap-2">
       <p className="font-bold text-2xl">Daily</p>
-      <Accordion
-        className="flex flex-col gap-3"
-        allowZeroExpanded
-        allowMultipleExpanded={true}
-      >
+      <Accordion className="flex flex-col gap-3" allowZeroExpanded>
         {props.data.list.slice(0, 7).map((item, index) => (
           <AccordionItem key={index}>
-            <AccordionItemHeading>
+            <AccordionItemHeading onClick={() => handleDropdownIcon(index)}>
               <AccordionItemButton>
                 <div className="flex justify-between bg-white h-14 px-5 rounded-3xl shadow-gray-400 shadow-lg">
                   <div className="flex gap-2 items-center">
@@ -45,14 +48,23 @@ export default function Forecast(props) {
                       {forecastForDays[index]}
                     </p>
                   </div>
-                  <div className="flex items-center gap-4">
-                    <p className="font-semibold">
-                      {item.weather[0].description}
-                    </p>
-                    <p className="text-gray-500">
-                      {Math.ceil(item.main.temp_min)} /{" "}
-                      {Math.ceil(item.main.temp_max)}
-                    </p>
+                  <div className="flex justify-between items-center gap-4">
+                    <div className="flex items-center gap-4">
+                      <p className="font-semibold">
+                        {item.weather[0].description}
+                      </p>
+                      <p className="text-gray-500">
+                        {Math.ceil(item.main.temp_min)} /{" "}
+                        {Math.ceil(item.main.temp_max)}
+                      </p>
+                    </div>
+                    <div className="flex justify-center">
+                      <FaChevronDown
+                        className={`transition ease-in-out  ${
+                          activeIndex === index ? "transform rotate-180" : ""
+                        }`}
+                      />
+                    </div>
                   </div>
                 </div>
               </AccordionItemButton>
