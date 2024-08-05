@@ -51,7 +51,7 @@ function App() {
       <div className="w-5/6">
         <Search onSearchChange={handleSearchOnChange} />
       </div>
-      <div className="">
+      <div className="w-5/6">
         {currentWeather ? (
           <>
             <CurrentWeather
