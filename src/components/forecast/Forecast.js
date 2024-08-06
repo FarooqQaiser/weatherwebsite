@@ -31,13 +31,13 @@ export default function Forecast(props) {
 
   return (
     <div className="flex flex-col gap-2">
-      <p className="font-bold text-2xl">Daily</p>
+      <p className="font-bold text-2xl">7 Days Forecast</p>
       <Accordion className="flex flex-col gap-3" allowZeroExpanded>
         {props.data.list.slice(0, 7).map((item, index) => (
           <AccordionItem key={index}>
             <AccordionItemHeading onClick={() => handleDropdownIcon(index)}>
               <AccordionItemButton>
-                <div className="flex justify-between bg-white h-14 px-5 rounded-3xl shadow-gray-400 shadow-lg">
+                <div className="flex justify-between bg-white h-14 px-5">
                   <div className="flex gap-2 items-center">
                     <img
                       src={`icons/${item.weather[0].icon}.png`}
@@ -71,42 +71,32 @@ export default function Forecast(props) {
             </AccordionItemHeading>
             <AccordionItemPanel>
               <div className="flex justify-between gap-4 mt-3">
-                <div className="w-full bg-white p-3 border-gray-500 border">
+                <div className="w-full text-white bg-[#748CF1] p-3 ">
                   <div className="flex justify-between">
                     <p className="font-semibold">Pressure:</p>
-                    <p className="text-gray-500 font-semibold">
-                      {item.main.pressure} hPa
-                    </p>
+                    <p className="font-semibold">{item.main.pressure} hPa</p>
                   </div>
                   <div className="flex justify-between">
                     <p className="font-semibold">Clouds:</p>
-                    <p className="text-gray-500 font-semibold">
-                      {item.clouds.all}%
-                    </p>
+                    <p className="font-semibold">{item.clouds.all}%</p>
                   </div>
                   <div className="flex justify-between">
                     <p className="font-semibold">Sea Level:</p>
-                    <p className="text-gray-500 font-semibold">
-                      {item.main.sea_level}m
-                    </p>
+                    <p className="font-semibold">{item.main.sea_level}m</p>
                   </div>
                 </div>
-                <div className="w-full bg-white p-3 border-gray-500 border">
+                <div className="w-full text-white bg-[#748CF1] p-3">
                   <div className="flex justify-between">
                     <p className="font-semibold">Humidity:</p>
-                    <p className="text-gray-500 font-semibold">
-                      {item.main.humidity}%
-                    </p>
+                    <p className="font-semibold">{item.main.humidity}%</p>
                   </div>
                   <div className="flex justify-between">
                     <p className="font-semibold">Wind Speed:</p>
-                    <p className="text-gray-500 font-semibold">
-                      {item.clouds.all}m/s
-                    </p>
+                    <p className="font-semibold">{item.clouds.all}m/s</p>
                   </div>
                   <div className="flex justify-between">
                     <p className="font-semibold">Feels Like:</p>
-                    <p className="text-gray-500 font-semibold">
+                    <p className="font-semibold">
                       {Math.ceil(item.main.feels_like)}°C
                     </p>
                   </div>
